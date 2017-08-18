@@ -1,0 +1,34 @@
+## import required modules
+import os
+import datetime
+import pandas as pd
+
+drive_name = "S:"
+os.getcwd()
+os.chdir('%s\\Python Codes\\gitrepo\\sanjay-lnt'%drive_name)
+
+import lntca.utils as utils
+reload(utils)
+
+# Use this to set input configuration
+# TODO: @whoever input csv file for Labor without Material
+incsv_lm = "S:\\L&T_Analysis\\1. DATA DUMPS\\0. Work Order\\Misc_included_LWM.csv"
+incsv_lo = "S:\\L&T_Analysis\\1. DATA DUMPS\\0. Work Order\\Misc_included_LWOM.csv"
+incsv = '%s\\Python Codes\\gitrepo\\sanjay-lnt\\data\\Earthwork_sudhakar.csv'%drive_name
+
+# TODO: @whoever output directory, change to avoid overwrites
+outdir = os.path.join('output', "tagged_%s"%(datetime.datetime.today().strftime("%Y%m%d")))
+if not os.path.exists(outdir):
+    os.makedirs(outdir)
+readme_file = os.path.join(outdir, 'notebook.txt')
+if not os.path.exists(readme_file):
+    open(readme_file, 'w').write("%s\n Please write any notes wrt work for this directory in this notebook \n%s"%('-'*80, '-'*80))
+
+text_field = "activity_text"
+
+activity_cat_1="earthwork"
+# cost_field = "value"
+
+# TODO: @whoever add case within if/elif and specify respective taxonomy file
+# Legacy code. Prefer to update full_taxonomy_csv, full_rate_cut_csv, and full_tags_replacement_csv files instead
+print("Input configuration done. Output directory is set as `%s`"%(os.path.realpath(outdir)))
